@@ -63,6 +63,9 @@ const SignUpForm = () => {
         <br />
         <button onClick={SignUp}>Sign Up</button>
       </form>
+      <p>
+        Already have an account? <Link to='/Login'>Sign In</Link>
+    </p>
     
     </>
   )
