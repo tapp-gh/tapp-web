@@ -16,6 +16,7 @@ const LogInForm = () => {
         //     email,
         //     password
         // })
+        console.log(email,password)
         
     }
 

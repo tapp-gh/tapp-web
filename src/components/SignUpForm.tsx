@@ -22,6 +22,7 @@ const SignUpForm = () => {
            }
           if(password===confirmPassword){
               //API CALL
+              console.log(userDetails)
           } else{
               setError('Password must match')
           }
