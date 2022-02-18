@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import LoadingScreen from '../components/LoadingScreen';
 import SignUpForm from '../components/SignUpForm';
-// import { AiOutlineTwitter } from "react-icons/ai";
+import { FaTwitter } from "react-icons/fa";
+
 
 const SingUp = () => {
   const [loading,setLoading] = useState(true)
@@ -14,12 +15,12 @@ const SingUp = () => {
     <>
             {loading === false ? (
         <div className='signUp'>
-        {/* <div className='logo'><AiOutlineTwitter/></div> */}
-        <h2 className='underline'>Sign Up</h2>
-        <h4>First create your account</h4>
-        <div className="signup-form">
-        <SignUpForm/>
-        </div>
+          <div className='logo'><FaTwitter/></div>
+          <h2 className='underline'>Sign Up</h2>
+          <h4>First create your account</h4>
+         <div className="signup-form">
+            <SignUpForm/>
+         </div>
         </div>
     ) : <LoadingScreen/>}
    

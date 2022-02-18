@@ -1,8 +1,9 @@
 import React from 'react'
+import { FaTwitter } from "react-icons/fa";
 
 const LoadingScreen = () => {
   return (
-    <div>LoadingScreen</div>
+    <div><FaTwitter/></div>
   )
 }
 
