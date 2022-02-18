@@ -8,14 +8,14 @@ const SingUp = () => {
 
 
   useEffect(()=>{
-    setTimeout(() => setLoading(false), 3000)
+    setTimeout(() => setLoading(false), 1500)
   },[])
   return (
     <>
             {loading === false ? (
         <div className='signUp'>
         {/* <div className='logo'><AiOutlineTwitter/></div> */}
-        <h2>Sign Up</h2>
+        <h2 className='underline'>Sign Up</h2>
         <h4>First create your account</h4>
         <div className="signup-form">
         <SignUpForm/>

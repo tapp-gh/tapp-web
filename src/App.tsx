@@ -8,7 +8,7 @@ import LogIn from './pages/LogIn';
 
 const App = () => {
   return (
-    <div className="container">
+    <div className="App">
       <Router>
         <Routes>
           <Route path='/' element={<SingUp/>}/>

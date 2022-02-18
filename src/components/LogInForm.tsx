@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
-import { onLogin } from '../Api';
+import { login } from '../http/auth';
 
 const LogInForm = () => {
     const [{email,password},setCredentials] = useState({
@@ -9,14 +9,20 @@ const LogInForm = () => {
     })
 
     // submit function
-    const LogIn =async (e:React.FormEvent) => {
+    const handleLogIn =async (e:React.FormEvent) => {
         e.preventDefault()
 
-        const logs = await onLogin({
+        const data = {
             email,
             password
-        })
-        console.log(logs)
+        }
+        try {
+            const res = await login(data)
+            console.log(res)
+
+        } catch (error) {
+            console.log(error)
+        }
         
     }
 
@@ -37,7 +43,7 @@ const LogInForm = () => {
           className='input'
           onChange={(e) => setCredentials({ password: e.target.value,email })}
           />
-        <button onClick={LogIn}>Sign In</button>
+        <button onClick={handleLogIn}>Sign In</button>
     </form>
     <p>
         Don't have an account? <Link to='/'>Sign Up</Link>

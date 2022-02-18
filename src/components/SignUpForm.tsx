@@ -14,7 +14,7 @@ const SignUpForm = () => {
 
        // submit function
 
-       const SignUp =async (e:React.FormEvent) => {
+       const handleSignUp =async (e:React.FormEvent) => {
            e.preventDefault()
 
            const userDetails={
@@ -25,6 +25,7 @@ const SignUpForm = () => {
               console.log(userDetails)
           } else{
               setError('Password must match')
+              console.log(error)
           }
        }
 
@@ -62,7 +63,7 @@ const SignUpForm = () => {
 
         />
         <br />
-        <button onClick={SignUp}>Sign Up</button>
+        <button onClick={handleSignUp}>Sign Up</button>
       </form>
       <p>
         Already have an account? <Link to='/Login'>Sign In</Link>
