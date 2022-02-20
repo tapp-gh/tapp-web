@@ -1,5 +1,4 @@
 import React from 'react'
-// import 'tailwindcss'
 import {BrowserRouter as Router,Routes,Route} from  'react-router-dom'; 
 import SingUp from './pages/SingUp';
 import LogIn from './pages/LogIn';
@@ -8,7 +7,7 @@ import LogIn from './pages/LogIn';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="min-h-screen flex flex-col justify-center">
       <Router>
         <Routes>
           <Route path='/' element={<SingUp/>}/>

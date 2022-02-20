@@ -28,26 +28,29 @@ const LogInForm = () => {
 
     return (
         <>
-    <form>
+    <form className='space-y-6 mt-44 p-3 flex flex-col justify-center relative'>
        <input
           type='text'
           value={email}
           placeholder='Email'
-          className='input'
+          className='border-b-2 outline-none P-2'
           onChange={(e) => setCredentials({ email: e.target.value,password })}
           />
+
         <input
           type='password'
           value={password}
           placeholder='Password'
-          className='input'
+          className='border-b-2 outline-none P-2'
           onChange={(e) => setCredentials({ password: e.target.value,email })}
           />
-        <button onClick={handleLogIn}>Sign In</button>
-    </form>
-    <p>
-        Don't have an account? <Link to='/'>Sign Up</Link>
+          <button className='text-orange-500 absolute right-3 top-9'>Forget Password ?</button>
+         
+        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' onClick={handleLogIn}>LOG IN</button>
+    <p className='text-center mt-6'>
+        Don't have an account? <Link to='/' className='text-orange-500 underline'>Sign Up</Link>
     </p>
+    </form>
 </>
   )
 }

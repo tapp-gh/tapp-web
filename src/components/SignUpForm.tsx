@@ -1,5 +1,8 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
+
 
 const SignUpForm = () => {
        const[{name,email,password,confirmPassword}, setDetails] = useState({
@@ -10,6 +13,9 @@ const SignUpForm = () => {
        })
        
        const [error,setError] = useState('')
+       const [showPassword,setShowPassword] = useState(false)
+       const [showConfirmPassword,setShowConfirmPassword] = useState(false)
+
 
 
        // submit function
@@ -28,46 +34,66 @@ const SignUpForm = () => {
               console.log(error)
           }
        }
-
+ const togglePassword = ()=>{
+   setShowPassword(showPassword ? false : true)
+ }
+ const toggleConfirmPassword = ()=>{
+  setShowConfirmPassword(showConfirmPassword ? false : true)
+}
   return (
     <>
-    <form className='signUpForm'>
+    <form className='space-y-6 mt-20 p-3 flex flex-col justify-center relative'>
       {/* Input fields */}
+    
         <input
           type='text'
           value={name}
           placeholder='Full Name'
-          className='input'
+          className='border-b-2 outline-none'
           onChange={(e) => setDetails({ name: e.target.value,email,password,confirmPassword })}
-        />
+          />
+      
+
+  
         <input
           type='text'
           value={email}
           placeholder='Email'
-          className='input'
+          className='border-b-2 outline-none P-2'
           onChange={(e) => setDetails({ email: e.target.value,name,password,confirmPassword })}
-        />
+          />
+    
+          
+    
         <input
-          type='password'
+          type={showPassword ? 'text' : 'password'}
           value={password}
           placeholder='Password'
-          className='input'
+          className='border-b-2 outline-none P-2'
           onChange={(e) => setDetails({ password: e.target.value,name,email,confirmPassword })}
-        />
+          />
+      
+          
+    
         <input
-          type='password'
+          type={showConfirmPassword ? 'text' : 'password'}
           value={confirmPassword}
           placeholder='Confirm Password'
-          className='input'
+          className='border-b-2 outline-none P-2'
           onChange={(e) => setDetails({ password,name,email,confirmPassword: e.target.value })}
+          
+          />
+          <button className='text-orange-500 absolute right-6 top-24' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
+          <button className='text-orange-500 absolute right-6 bottom-50' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
+          
 
-        />
-        <br />
-        <button onClick={handleSignUp}>Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <Link to='/Login'>Sign In</Link>
+
+      
+        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white'onClick={handleSignUp}>SIGN UP</button>
+      <p className='text-center mt-6'>
+        Already have an account? <Link to='/Login' className='text-orange-500 underline'>Sign In</Link>
     </p>
+      </form>
     
     </>
   )

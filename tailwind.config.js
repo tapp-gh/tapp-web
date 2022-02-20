@@ -6,7 +6,8 @@ module.exports = {
     color:{
       purple:'#30174a',
       white:'#fff',
-      black:'#000'
+      black:'#000',
+      orange:'#E86B1B'
     },
     fontFamily: {
       sans: ['Helvetica Neue', 'sans-serif'],
