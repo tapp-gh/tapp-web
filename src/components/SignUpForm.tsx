@@ -1,39 +1,54 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 
 
 const SignUpForm = () => {
-       const[{name,email,password,confirmPassword}, setDetails] = useState({
-           name:'',
-           email:'',
-           password:'',
-           confirmPassword:''
-       })
-       
-       const [error,setError] = useState('')
-       const [showPassword,setShowPassword] = useState(false)
-       const [showConfirmPassword,setShowConfirmPassword] = useState(false)
+  interface formData {
+    name: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+  }
 
+  // const[{name,email,password,confirmPassword}, setDetails] = useState({
+  //   name:'',
+  //   email:'',
+  //   password:'',
+  //   confirmPassword:''
+  // })
+
+  
+  // const [error,setError] = useState('')
+  const [showPassword,setShowPassword] = useState(false)
+  const [showConfirmPassword,setShowConfirmPassword] = useState(false)
+  
+  const {register,handleSubmit, formState :{errors}} = useForm<formData>();
 
 
        // submit function
+       const onSubmit = handleSubmit(({name,email,password,confirmPassword})=>{
+        const userDetails={
+                   name,email,password,confirmPassword
+               }
+         console.log( userDetails )
+       })
+      //  const handleSignUp =async (e:React.FormEvent) => {
+      //      e.preventDefault()
 
-       const handleSignUp =async (e:React.FormEvent) => {
-           e.preventDefault()
-
-           const userDetails={
-               name,email,password,confirmPassword
-           }
-          if(password===confirmPassword){
-              //API CALL
-              console.log(userDetails)
-          } else{
-              setError('Password must match')
-              console.log(error)
-          }
-       }
+      //      const userDetails={
+      //          name,email,password,confirmPassword
+      //      }
+      //     if(password===confirmPassword){
+      //         //API CALL
+      //         console.log(userDetails)
+      //     } else{
+      //         setError('Password must match')
+      //         console.log(error)
+      //     }
+      //  }
  const togglePassword = ()=>{
    setShowPassword(showPassword ? false : true)
  }
@@ -42,46 +57,46 @@ const SignUpForm = () => {
 }
   return (
     <>
-    <form className='space-y-6 mt-20 p-3 flex flex-col justify-center relative'>
+    <form className='space-y-6 mt-20 p-3 flex flex-col justify-center relative' onSubmit={onSubmit}>
       {/* Input fields */}
     
         <input
+          {...register("name",{required:true})}
+          name='name'
           type='text'
-          value={name}
+          style={{borderColor: errors.name ? 'red' : ''}}
           placeholder='Full Name'
           className='border-b-2 outline-none'
-          onChange={(e) => setDetails({ name: e.target.value,email,password,confirmPassword })}
           />
-      
 
-  
         <input
+        {...register("email", {
+          required: true,
+          pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        })}
+          name='email'
           type='text'
-          value={email}
+          style={{borderColor: errors.email ? 'red' : ''}}
           placeholder='Email'
           className='border-b-2 outline-none P-2'
-          onChange={(e) => setDetails({ email: e.target.value,name,password,confirmPassword })}
           />
-    
-          
+
     
         <input
+        {...register("password",{required:true, maxLength:18,minLength:6})}
+          name='password'
           type={showPassword ? 'text' : 'password'}
-          value={password}
           placeholder='Password'
           className='border-b-2 outline-none P-2'
-          onChange={(e) => setDetails({ password: e.target.value,name,email,confirmPassword })}
           />
       
-          
-    
+             
         <input
+        {...register("confirmPassword",{required:true, maxLength:18,minLength:6})}
+          name='confirmPassword'
           type={showConfirmPassword ? 'text' : 'password'}
-          value={confirmPassword}
-          placeholder='Confirm Password'
-          className='border-b-2 outline-none P-2'
-          onChange={(e) => setDetails({ password,name,email,confirmPassword: e.target.value })}
-          
+          placeholder='Confirm password'
+          className='border-b-2 outline-none P-2'   
           />
           <button className='text-orange-500 absolute right-6 top-24' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           <button className='text-orange-500 absolute right-6 bottom-50' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
@@ -89,7 +104,7 @@ const SignUpForm = () => {
 
 
       
-        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white'onClick={handleSignUp}>SIGN UP</button>
+        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white'>SIGN UP</button>
       <p className='text-center mt-6'>
         Already have an account? <Link to='/Login' className='text-orange-500 underline'>Sign In</Link>
     </p>
