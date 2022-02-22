@@ -13,15 +13,6 @@ const SignUpForm = () => {
     confirmPassword: string
   }
 
-  // const[{name,email,password,confirmPassword}, setDetails] = useState({
-  //   name:'',
-  //   email:'',
-  //   password:'',
-  //   confirmPassword:''
-  // })
-
-  
-  // const [error,setError] = useState('')
   const [showPassword,setShowPassword] = useState(false)
   const [showConfirmPassword,setShowConfirmPassword] = useState(false)
   
@@ -35,26 +26,14 @@ const SignUpForm = () => {
                }
          console.log( userDetails )
        })
-      //  const handleSignUp =async (e:React.FormEvent) => {
-      //      e.preventDefault()
-
-      //      const userDetails={
-      //          name,email,password,confirmPassword
-      //      }
-      //     if(password===confirmPassword){
-      //         //API CALL
-      //         console.log(userDetails)
-      //     } else{
-      //         setError('Password must match')
-      //         console.log(error)
-      //     }
-      //  }
- const togglePassword = ()=>{
-   setShowPassword(showPassword ? false : true)
- }
- const toggleConfirmPassword = ()=>{
-  setShowConfirmPassword(showConfirmPassword ? false : true)
-}
+       
+       // Viewing Passwords Function
+        const togglePassword = ()=>{
+          setShowPassword(showPassword ? false : true)
+        }
+        const toggleConfirmPassword = ()=>{
+          setShowConfirmPassword(showConfirmPassword ? false : true)
+        }
   return (
     <>
     <form className='space-y-6 mt-20 p-3 flex flex-col justify-center relative' onSubmit={onSubmit}>
