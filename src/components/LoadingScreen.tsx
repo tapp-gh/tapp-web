@@ -3,8 +3,8 @@ import { FaTwitter } from "react-icons/fa";
 
 const LoadingScreen = () => {
   return (
-    <div className='max-w-md w-full mx-auto justify-center align-center'>
-      <FaTwitter/>
+    <div className='flex align-center justify-center text-purple-600'>
+      <FaTwitter className='text-5xl'/>
     </div>
   )
 }

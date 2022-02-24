@@ -13,18 +13,16 @@ const LogInForm = () => {
 
     // submit function
     const onSubmit = handleSubmit(({email,password})=>{
-
         const data ={
             email,
             password
         }
         console.log(data)
-
     })
 
     return (
         <>
-    <form className='space-y-6 mt-44 p-3 flex flex-col justify-center relative'>
+    <form className='space-y-6 mt-44 p-4 flex flex-col justify-center relative'>
        <input
        {...register("email", {
         required: true,
