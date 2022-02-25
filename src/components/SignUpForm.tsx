@@ -82,6 +82,8 @@ const SignUpForm = () => {
           placeholder='Confirm password'
           className='border-b-2 outline-none P-2'   
           />
+          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+
           <button className='text-orange-500 absolute right-6 top-24' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           <button className='text-orange-500 absolute right-6 bottom-50' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           

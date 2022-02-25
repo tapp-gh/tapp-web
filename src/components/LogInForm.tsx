@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import {Link} from 'react-router-dom'
 import { login } from '../http/auth';
 
+interface loginData {
+    email: string,
+    password: string,
+  }
 const LogInForm = () => {
-    interface loginData {
-        email: string,
-        password: string,
-      }
 
     const {register,handleSubmit,formState:{errors}} = useForm<loginData>()
 
