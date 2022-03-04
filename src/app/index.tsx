@@ -7,7 +7,7 @@ const App = () => {
     <div className="min-h-screen flex flex-col justify-center">
       <Router>
         <Routes>
-          <Route path='/posts' element={<Tweets/>}/>
+          <Route path='/tweets' element={<Tweets/>}/>
           {/* <Route path='/' element={<SingUp/>}/>
           <Route path='/login' element={<LogIn/>}/> */}
         </Routes>
