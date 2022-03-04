@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTwitter } from 'react-icons/fa';
 
-const Posts = () => {
+const Tweets = () => {
   return (
     <>
       <div className="max-w-md w-full mx-auto">
@@ -19,4 +19,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Tweets;
