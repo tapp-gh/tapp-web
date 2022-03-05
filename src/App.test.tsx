@@ -7,23 +7,21 @@
 //   const linkElement = screen.getByText(/learn react/i);
 //   expect(linkElement).toBeInTheDocument();
 // });
+import React from 'react';
+import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
 import SignUp from './pages/SignUp'
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
-import '@testing-library/jest-dom/extend-expect';
-
-// const App = require('./App')
-
-jest.mock('./pages/LogIn');
-jest.mock('./pages/SignUp');
 
 
-// 
-// describe('Test fro App Router', ()=>{
-//   test('should render SignUp page on default route',()=>{
-
-//     // Arrange
-//     SignUp.mockImplementation(() => <div>PageHeaderMock</div>);
-//   })
-// })
-
+describe('App', () => {
+  test('should render', () => {
+    const component = renderer
+      .create(
+        <MemoryRouter>
+          <SignUp />
+        </MemoryRouter>
+      )
+      .toJSON();
+    expect(component).toMatchSnapshot();
+  });
+});
