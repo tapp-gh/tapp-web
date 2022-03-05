@@ -1,3 +1,4 @@
+import { sign } from 'crypto';
 import React,{useState} from 'react'
 import { useForm } from 'react-hook-form';
 import {Link} from 'react-router-dom'
@@ -13,12 +14,12 @@ const LogInForm = () => {
     const {register,handleSubmit,formState:{errors}} = useForm<loginData>()
 
     // submit function
-    const onSubmit = handleSubmit(({email,password})=>{
-        const data ={
-            email,
-            password
-        }
-        console.log(data)
+    const onSubmit = handleSubmit(async({email,password})=>{
+        // const data = await login({
+        //     email,
+        //     password
+        // })
+        // console.log(data)
     })
     const handleEnable = (event: React.FormEvent)=>{
       const target = event.target as HTMLButtonElement

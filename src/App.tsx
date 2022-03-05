@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router,Routes,Route} from  'react-router-dom'; 
-import SingUp from './pages/SingUp';
+import SingUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 
 

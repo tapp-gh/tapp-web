@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
-import LogInForm from './LogInForm';
+import { signup } from '../http/auth';
 
 
 interface formData {
@@ -24,10 +24,10 @@ const SignUpForm = () => {
   password.current = watch("password","")
 
        // submit function
-       const onSubmit = handleSubmit(({name,email,password,confirmPassword})=>{
-        const userDetails={
+       const onSubmit = handleSubmit(async ({name,email,password,confirmPassword})=>{
+        const userDetails= await signup({
                    name,email,password,confirmPassword
-               }
+               })
                 console.log( userDetails )
        })
        
@@ -101,7 +101,6 @@ const SignUpForm = () => {
         Already have an account? <Link to='/Login' className='text-orange-500 underline'>Sign In</Link>
     </p>
       </form>
-    <LogInForm />
     </>
   )
 }
