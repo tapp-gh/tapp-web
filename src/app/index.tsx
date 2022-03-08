@@ -4,16 +4,16 @@ import Tweets from './pages/Tweets';
 
 const App = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center">
+    <>
       <Router>
         <Routes>
-          <Route path='/tweets' element={<Tweets/>}/>
+          <Route path="/tweets" element={<Tweets />} />
           {/* <Route path='/' element={<SingUp/>}/>
           <Route path='/login' element={<LogIn/>}/> */}
         </Routes>
       </Router>
-    </div>
-  )
+    </>
+  );
 }
 
 export default App

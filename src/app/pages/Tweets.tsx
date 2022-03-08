@@ -1,19 +1,51 @@
-import React from 'react';
-import { FaTwitter } from 'react-icons/fa';
+import React from "react";
 
 const Tweets = () => {
+  const MenuData = [
+    {
+      title: "Home",
+      icon: "",
+    },
+    {
+      title: "Explore",
+      icon: "",
+    },
+    {
+      title: "Notifications",
+      icon: "",
+    },
+    {
+      title: "Lists",
+      icon: "",
+    },
+    {
+      title: "Profile",
+      icon: "",
+    },
+    {
+      title: "More",
+      icon: "",
+    },
+  ];
+
   return (
     <>
-      <div className="max-w-md w-full mx-auto">
-        <div className=" flex align-center justify-center text-purple-600 text-2xl">
-          <FaTwitter className="text-4xl" />
+      <div className="w-full grid grid-cols-12">
+        <div className="col-span-2 flex flex-col min-h-screen group">
+          {MenuData.map((item, index) => (
+            <div key={index} className="my-2">
+              <div key={index} className="flex px-4 py-1 cursor-pointer">
+                <span className="text-lg text-gray-500" />
+                <p className="ml-4 text-sm font-bold text-gray-400">
+                  {" "}
+                  {item.title}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 mt-12 text-center">
-          Sign In
-        </h2>
-        <h4 className="text-center mt-6 text-gray-400">
-          Enter your email and password
-        </h4>
+        <div className="col-span-8 bg-gray-300">2</div>
+        <div className="col-span-2">3</div>
       </div>
     </>
   );
