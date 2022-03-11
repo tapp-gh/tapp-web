@@ -96,7 +96,7 @@ const SignUpForm = () => {
           <button className='text-orange-500 absolute right-6 top-24' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           <button className='text-orange-500 absolute right-6 bottom-50' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           
-        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' type='submit' disabled={disableButton} onClick={onSubmit}>SIGN UP</button>
+        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' data-testid='signup' type='submit' disabled={disableButton} onClick={onSubmit}>SIGN UP</button>
       <p className='text-center mt-6'>
         Already have an account? <Link to='/Login' className='text-orange-500 underline'>Sign In</Link>
     </p>
