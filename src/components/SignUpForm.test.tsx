@@ -11,6 +11,7 @@ describe('form', ()=>{
         <Router>
             <SignUpForm/>
         </Router>)
+        
         const namePlaceHolder = screen.getByPlaceholderText('Full Name')
         const emailPlaceHolder = screen.getByPlaceholderText('Email')
         const passwordPlaceHolder = screen.getByPlaceholderText('Password')
