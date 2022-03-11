@@ -19,7 +19,7 @@ const SignUpForm = () => {
   const [disableButton, setDisableButton] = useState(true) 
   const {register,handleSubmit, formState :{errors}, watch} = useForm<formData>();
 
-
+  //this where the error is
   const password = useRef({})
   password.current = watch("password","")
 
