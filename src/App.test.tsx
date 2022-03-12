@@ -6,7 +6,9 @@ import {BrowserRouter as Router} from  'react-router-dom';
 
 test('renders sign-up', () => {
   render(<Router>
+    
     <SignUpForm />
+
   </Router>);
    const signUp = screen.getByText(/sign up/i)
   expect(signUp).toBeInTheDocument();

@@ -19,6 +19,9 @@ describe('LogIn form',()=>{
         userEvent.type(emailPlaceHolder,'test@email.com')
         userEvent.type(passowordPlaceHolder,'Test1234')
         
+        const button = screen.getByRole('button', {name: /LOG IN/i})
+       
+        expect(button).toBeEnabled()
 
     })
    
