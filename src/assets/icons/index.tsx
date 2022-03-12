@@ -7,6 +7,7 @@ import ListIcon from "assets/icons/list.svg";
 import MessageIcon from "assets/icons/message.svg";
 import MoreIcon from "assets/icons/more.svg";
 import BackIcon from "assets/icons/arrow-back.svg";
+import CalendarIcon from "assets/icons/calendar.svg";
 
 export {
   UserIcon,
@@ -18,4 +19,5 @@ export {
   MessageIcon,
   MoreIcon,
   BackIcon,
+  CalendarIcon,
 };

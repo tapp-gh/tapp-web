@@ -9,6 +9,7 @@ import {
   MessageIcon,
   MoreIcon,
   BackIcon,
+  CalendarIcon,
 } from "assets/icons/index";
 import classes from "./Tweets.module.css";
 
@@ -50,6 +51,7 @@ const Tweets = () => {
 
   return (
     <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
+      {/* Left Navbar */}
       <div className="sm:w-3/12 md:3/12 w-full flex-shrink flex-grow-0 p-4">
         <div className="sticky top-0 px-4 w-full">
           <ul className="flex sm:flex-col overflow-hidden content-center justify-between">
@@ -60,15 +62,12 @@ const Tweets = () => {
                   className={`flex items-center px-4 py-1 cursor-pointer`}
                 >
                   <img
-                    className={`${classes.icon} ${classes.iconColorBlack} sm:mx-2 me-2 inline`}
+                    className={`${classes.icon} ${classes.iconColorBlack} mr-4 inline`}
                     src={item.icon}
                     alt=""
                   />
                   <span>
-                    <p className=" hidden sm:inline ml-4 text-sm font-bold text-gray-400">
-                      {" "}
-                      {item.title}
-                    </p>
+                    <p className="hidden sm:inline"> {item.title}</p>
                   </span>
                 </a>
               </li>
@@ -76,6 +75,8 @@ const Tweets = () => {
           </ul>
         </div>
       </div>
+
+      {/* Main Middle Content */}
       <main
         role="main"
         className="w-full h-full min-h-screen flex-grow p-4 overflow-auto"
@@ -84,19 +85,15 @@ const Tweets = () => {
         <div className="flex py-[10px]">
           <a href="#" className={`flex items-center px-4 py-1 cursor-pointer`}>
             <img
-              className={`${classes.icon} ${classes.iconColorBlack} sm:mx-2 me-2 inline`}
+              className={`${classes.icon} ${classes.iconColorBlack} mr-4 inline`}
               src={BackIcon}
               alt=""
             />
           </a>
           <span>
             <div className="flex flex-col">
-              <p className=" hidden sm:inline ml-4 text-sm font-bold text-gray-400">
-                {"Tony Stark"}
-              </p>
-              <p className=" hidden sm:inline ml-4 text-sm font-bold text-gray-400">
-                {"1k Tweets"}
-              </p>
+              <p className="font-bold">{"Tony Stark"}</p>
+              <p className="">{"1k Tweets"}</p>
             </div>
           </span>
         </div>
@@ -116,7 +113,51 @@ const Tweets = () => {
           />
         </div>
         {/* End Cover and Profile Picture */}
+
+        {/* Profile Summary */}
+        <div className="flex flex-col">
+          <div className="flex justify-end my-4 mx-5">
+            <button className="rounded-full bg-gray-200 px-4 py-3">
+              Edit Profile
+            </button>
+          </div>
+
+          <div className="flex flex-col">
+            <p className="font-bold">{"Tony Stark"}</p>
+            <p className="">{"@tony_stark"}</p>
+            <p className="">{"Best bio you'll ever see"}</p>
+            <div className="flex items-center">
+              <img
+                className={`${classes.iconColorBlack} mr-4`}
+                src={CalendarIcon}
+                alt=""
+              />
+              <span>
+                <p className="">{"Joined February 2022"}</p>
+              </span>
+            </div>
+            <div className="flex items-center">
+              <span>
+                <p className="mr-4">
+                  <span className="font-bold">1k</span> Following
+                </p>
+              </span>
+              <span>
+                <p className="">
+                  <span className="font-bold">200M</span> Followers
+                </p>
+              </span>
+            </div>
+          </div>
+        </div>
+        {/* End Profile Summary */}
+
+        {/* Tweets Tabs */}
+        <div></div>
+        {/* End Tweets Tabs */}
       </main>
+
+      {/* Right Sidebar */}
       <div className="sm:w-3/12 md:3/12 w-full flex-shrink flex-grow-0 p-4">
         <div className="sticky top-0 px-4 w-full"></div>
       </div>
