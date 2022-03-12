@@ -1,0 +1,8 @@
+.iconColorBlack {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(46%) saturate(11%) hue-rotate(212deg) brightness(96%) contrast(102%);
+  width: 30px;
+}
+
+.iconColorWhite {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(272deg) brightness(102%) contrast(102%);
+}
