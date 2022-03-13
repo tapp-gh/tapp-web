@@ -1,51 +1,40 @@
 import React from "react";
-import {
-  UserIcon,
-  BellIcon,
-  BookmarkIcon,
-  HashtagIcon,
-  HomeIcon,
-  ListIcon,
-  MessageIcon,
-  MoreIcon,
-  BackIcon,
-  CalendarIcon,
-} from "assets/icons/index";
+import * as Icons from "assets/icons/index";
 import classes from "./Tweets.module.css";
 
 const Tweets = () => {
   const MenuData = [
     {
       title: "Home",
-      icon: HomeIcon,
+      icon: Icons.HomeIcon,
     },
     {
       title: "Explore",
-      icon: HashtagIcon,
+      icon: Icons.HashtagIcon,
     },
     {
       title: "Notifications",
-      icon: BellIcon,
+      icon: Icons.BellIcon,
     },
     {
       title: "Messages",
-      icon: MessageIcon,
+      icon: Icons.MessageIcon,
     },
     {
       title: "Bookmarks",
-      icon: BookmarkIcon,
+      icon: Icons.BookmarkIcon,
     },
     {
       title: "Lists",
-      icon: ListIcon,
+      icon: Icons.ListIcon,
     },
     {
       title: "Profile",
-      icon: UserIcon,
+      icon: Icons.UserIcon,
     },
     {
       title: "More",
-      icon: MoreIcon,
+      icon: Icons.MoreIcon,
     },
   ];
 
@@ -54,7 +43,7 @@ const Tweets = () => {
   return (
     <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
       {/* Left Navbar */}
-      <div className="sm:w-3/12 md:3/12 w-full flex-shrink flex-grow-0 p-4">
+      <div className="sm:w-3/12 md:3/12 w-full flex-shrink flex-grow-0 p-4 border-r-2 border-r-purple-800">
         <div className="sticky top-0 px-4 w-full">
           <ul className="flex sm:flex-col overflow-hidden content-center justify-between">
             {MenuData.map((item, index) => (
@@ -88,7 +77,7 @@ const Tweets = () => {
           <a href="#" className={`flex items-center px-4 py-1 cursor-pointer`}>
             <img
               className={`${classes.icon} ${classes.iconColorBlack} mr-4 inline`}
-              src={BackIcon}
+              src={Icons.BackIcon}
               alt=""
             />
           </a>
@@ -133,7 +122,7 @@ const Tweets = () => {
             <div className="flex items-center mb-2">
               <img
                 className={`${classes.iconColorBlack} mr-4`}
-                src={CalendarIcon}
+                src={Icons.CalendarIcon}
                 alt=""
               />
               <span>
@@ -159,6 +148,7 @@ const Tweets = () => {
         {/* Tweets Tabs */}
         <div className="flex flex-wrap">
           <div className="w-full">
+            {/* Tabs Header */}
             <ul
               className="flex my-4 list-none flex-wrap flex-row border-b-2 border-b-purple-800"
               role="tablist"
@@ -232,6 +222,9 @@ const Tweets = () => {
                 </a>
               </li>
             </ul>
+            {/* End Tabs Header */}
+
+            {/* Tabs Body */}
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6">
               <div className="px-4 py-5 flex-auto">
                 <div className="tab-content tab-space">
@@ -239,7 +232,119 @@ const Tweets = () => {
                     className={openTab === 1 ? "block" : "hidden"}
                     id="link1"
                   >
-                    {/* Content Here */}
+                    {/* Tweet Card Component Here */}
+                    <div className="flex flex-col w-full pb-4 border-b-2 border-b-purple-800">
+                      {/* Retweet Indicator Text*/}
+                      <div className="flex flex-row flex-nowrap mb-4">
+                        <img
+                          className={`${classes.iconColorBlack} mr-2 inline`}
+                          src={Icons.RetweetIcon}
+                          alt=""
+                        />
+                        <span>
+                          <p className="">{"You Retweeted"}</p>
+                        </span>
+                      </div>
+                      {/* End Retweet Indicator Text*/}
+
+                      {/* Tweet Content */}
+                      <div className="flex flex-row flex-nowrap">
+                        {/* Profile Image */}
+                        <img
+                          className={`rounded-full ${classes.profilePicture}`}
+                          src="https://via.placeholder.com/61/dedede.png?text=TS"
+                          alt=""
+                        />
+                        {/* End Profile Image */}
+
+                        {/* Tweet Sub Content */}
+                        <div className="flex flex-col ml-4">
+                          {/* Header */}
+                          <div className="flex">
+                            {/* Display Name */}
+                            <span className="pr-2">
+                              <p className="">{"Thor Odinson"}</p>
+                            </span>
+                            {/* Verified Status */}
+                            <span className="pr-2">
+                              <img
+                                className={`${classes.iconColorBlack} mr-2 inline`}
+                                src={Icons.VerifiedBadgeIcon}
+                                alt=""
+                              />
+                            </span>
+
+                            {/* Username */}
+                            <span className="pr-2">
+                              <p className="">@{"thor"}</p>
+                            </span>
+
+                            {/* Date */}
+                            <span>
+                              <p className="">· {"Jan 21"}</p>
+                            </span>
+                          </div>
+                          {/* End Header */}
+
+                          {/* Tweet Actual Content */}
+                          <div>{"I miss Asgard 😭"}</div>
+                          {/* End Tweet Actual Content */}
+                        </div>
+                        {/* End Tweet Sub Content */}
+                      </div>
+                      {/* End Tweet Content */}
+
+                      {/* Tweet Footer & Metrics */}
+                      <div className="flex pt-4">
+                        <ul className="flex list-none flex-wrap flex-row w-full">
+                          <li className="mr-2 last:mr-0 flex-auto flex flex-row flex-nowrap">
+                            {/* Comments */}
+                            <img
+                              className={`${classes.iconColorBlack} mr-2 inline`}
+                              src={Icons.TweetCommentIcon}
+                              alt=""
+                            />
+                            <span className="">
+                              <p className="">42k</p>
+                            </span>
+                          </li>
+
+                          <li className="mr-2 last:mr-0 flex-auto flex flex-row flex-nowrap">
+                            {/* Retweets */}
+                            <img
+                              className={`${classes.iconColorBlack} mr-2 inline`}
+                              src={Icons.RetweetIcon}
+                              alt=""
+                            />
+                            <span className="">
+                              <p className="">200k</p>
+                            </span>
+                          </li>
+
+                          <li className="mr-2 last:mr-0 flex-auto flex flex-row flex-nowrap">
+                            {/* Likes */}
+                            <img
+                              className={`${classes.iconColorBlack} mr-2 inline`}
+                              src={Icons.TweetLikeIcon}
+                              alt=""
+                            />
+                            <span className="">
+                              <p className="">700M</p>
+                            </span>
+                          </li>
+
+                          <li className="mr-2 last:mr-0 flex-auto flex flex-row flex-nowrap">
+                            {/* Share */}
+                            <img
+                              className={`${classes.iconColorBlack} mr-2 inline`}
+                              src={Icons.TweetShareIcon}
+                              alt=""
+                            />
+                          </li>
+                        </ul>
+                      </div>
+                      {/* End Tweet Footer & Metrics */}
+                    </div>
                   </div>
                   <div
                     className={openTab === 2 ? "block" : "hidden"}
@@ -262,13 +367,14 @@ const Tweets = () => {
                 </div>
               </div>
             </div>
+            {/* End Tabs Body */}
           </div>
         </div>
         {/* End Tweets Tabs */}
       </main>
 
       {/* Right Sidebar */}
-      <div className="sm:w-3/12 md:3/12 w-full flex-shrink flex-grow-0 p-4">
+      <div className="sm:w-3/12 md:3/12 w-full flex-shrink flex-grow-0 p-4 border-l-2 border-l-purple-800">
         <div className="sticky top-0 px-4 w-full"></div>
       </div>
     </div>
