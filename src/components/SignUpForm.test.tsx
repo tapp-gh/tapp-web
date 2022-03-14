@@ -34,9 +34,7 @@ describe('form', ()=>{
         const passwordPlaceHolder = screen.getByPlaceholderText('Password')
         const confirmPasswordInput = screen.getByPlaceholderText('Confirm password')
 
-        // const button = screen.getByTestId('signup')
         const button = screen.getByRole('button', {name: /SIGN UP/i})
-
 
         userEvent.type(emailPlaceHolder,'test@email.com')
         userEvent.type(namePlaceHolder,'test')

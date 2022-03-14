@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent,screen } from '@testing-library/react';
+import { render,screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {BrowserRouter as Router} from  'react-router-dom'; 
 import LogInForm from './LogInForm';
@@ -31,6 +31,7 @@ describe('LogIn form',()=>{
             <LogInForm/>
         </Router>
     )
+
     const emailPlaceHolder = screen.getByPlaceholderText('Email')
     const passowordPlaceHolder = screen.getByPlaceholderText('Password')
 
