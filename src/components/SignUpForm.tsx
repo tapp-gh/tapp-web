@@ -85,7 +85,7 @@ const SignUpForm = () => {
         <input
         {...register("confirmPassword",{required:true, validate: value => value === password.current || 'The passwords do not match'})}
           name='confirmPassword'
-          type={showConfirmPassword ? 'text' : 'password'}
+          type={showConfirmPassword ? 'text' : 'password'} 
           style={{borderColor: errors.confirmPassword ? 'red' : '' }}
           placeholder='Confirm password'
           className='border-b-2 outline-none P-2'   
@@ -93,8 +93,8 @@ const SignUpForm = () => {
           />
           {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
 
-          <button className='text-orange-500 absolute right-6 top-24' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
-          <button className='text-orange-500 absolute right-6 bottom-50' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
+          <button className='text-orange-500 absolute right-6 top-24' data-testid= 'showpassword' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
+          <button className='text-orange-500 absolute right-6 bottom-50' data-testid= 'showConfirmPassword' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           
         <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' data-testid='signup' type='submit' disabled={disableButton} onClick={onSubmit}>SIGN UP</button>
       <p className='text-center mt-6'>

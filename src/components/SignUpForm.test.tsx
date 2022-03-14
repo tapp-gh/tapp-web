@@ -51,10 +51,34 @@ describe('form', ()=>{
               )
             const passowrdPlaceHolder = screen.getByPlaceholderText('Password') as HTMLInputElement
             const confirmPasswordPlaceHolder = screen.getByPlaceholderText('Confirm password') as HTMLInputElement
-
+           
             fireEvent.change(passowrdPlaceHolder, { target : {value :'s3cret'}})
             fireEvent.change(confirmPasswordPlaceHolder, { target : {value :'s3cret'}})
 
             expect(passowrdPlaceHolder.value).toBe(confirmPasswordPlaceHolder.value)
     })
+    
+   test('toggle password visibility', ()=>{
+    render(
+        <Router>
+            <SignUpForm/>
+        </Router>
+    )
+    const passowrdPlaceHolder = screen.getByPlaceholderText('Password') as HTMLInputElement
+    const confirmPasswordPlaceHolder = screen.getByPlaceholderText('Confirm password') as HTMLInputElement
+    const showPasswordBtn = screen.getByTestId('showpassword')
+    const showConfirmPasswordBtn = screen.getByTestId('showConfirmPassword')
+
+     expect(passowrdPlaceHolder.type).toBe('password')
+     expect(confirmPasswordPlaceHolder.type).toBe('password')
+
+    fireEvent.click(showPasswordBtn)
+    fireEvent.click(showConfirmPasswordBtn)
+    
+    expect(passowrdPlaceHolder.type).toBe('text')
+    expect(confirmPasswordPlaceHolder.type).toBe('text')
+
+    
+
+})
 })
