@@ -1,15 +1,15 @@
 import React from "react";
 
-const TweetTabPage = (
-  pageLink: string,
-  openTab: number,
-  props: {
-    children: React.ReactChild | React.ReactFragment | null | undefined;
-  }
-) => {
+type Props = {
+  pageLink: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+const TweetTabPage: React.FC<Props> = ({ pageLink, className, children }) => {
   return (
-    <div className={openTab === 2 ? "block" : "hidden"} id={pageLink}>
-      {props}
+    <div className={className} id={pageLink}>
+      {children}
     </div>
   );
 };

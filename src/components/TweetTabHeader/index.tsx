@@ -1,6 +1,4 @@
 import React from "react";
-import classes from "components/components.module.css";
-import { CalendarIcon } from "assets/icons/index";
 
 const TweetTabHeader = (props: {
   children: React.ReactChild | React.ReactFragment | null | undefined;

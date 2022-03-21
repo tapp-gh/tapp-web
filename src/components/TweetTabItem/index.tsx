@@ -1,15 +1,21 @@
 import React from "react";
 
-const TweetTabItem = (
-  tabName: string,
-  openTab: string,
-  setOpenTab: (arg0: string) => void
-): JSX.Element => {
+type Props = {
+  tabName: string;
+  openTab: string | number;
+  tabId: string|number,
+  setOpenTab: (value: string | number) => void;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+const TweetTabItem: React.FC<Props> = (props: Props): JSX.Element => {
+
   return (
     <li
       className={`flex-auto
                   ${
-                    openTab === tabName.toLowerCase() &&
+                    props.tabId === props.openTab &&
                     "border-b-4 border-b-purple-800"
                   }`}
     >
@@ -17,13 +23,14 @@ const TweetTabItem = (
         className={"px-5 py-3 block"}
         onClick={(e) => {
           e.preventDefault();
-          setOpenTab(tabName.toLowerCase());
+          props.setOpenTab(props.tabId);
         }}
         data-toggle="tab"
-        href={`#${tabName.toLowerCase()}`}
+        href={`#${props.tabName.toLowerCase()}`}
         role="tablist"
       >
-        {tabName.toLowerCase().charAt(0).toUpperCase() + tabName.slice(1)}
+        {props.tabName.toLowerCase().charAt(0).toUpperCase() + props.tabName.slice(1)}
+        {props.children}
       </a>
     </li>
   );
