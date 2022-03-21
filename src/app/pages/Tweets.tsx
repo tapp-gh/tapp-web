@@ -1,6 +1,4 @@
 import React from "react";
-import * as Icons from "assets/icons/index";
-import classes from "./Tweets.module.css";
 import LeftNavBar from "components/LeftNavBar";
 import RightSideBar from "components/RightSideBar";
 import PageHeader from "components/PageHeader";
@@ -36,7 +34,6 @@ const Tweets = () => {
         {/* Tweets Tabs */}
         <div className="flex flex-wrap">
           <div className="w-full">
-            {/* Tabs Header */}
             <TweetTabHeader>
               <TweetTabItem
                 tabName="Tweets"
@@ -63,9 +60,7 @@ const Tweets = () => {
                 tabId={4}
               />
             </TweetTabHeader>
-            {/* End Tabs Header */}
 
-            {/* Tabs Body */}
             <TweetTabBody>
               <TweetTabPage
                 pageLink="link1"
@@ -82,7 +77,6 @@ const Tweets = () => {
                 <TweetItem />
               </TweetTabPage>
             </TweetTabBody>
-            {/* End Tabs Body */}
           </div>
         </div>
         {/* End Tweets Tabs */}
