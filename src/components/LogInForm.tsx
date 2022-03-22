@@ -53,7 +53,7 @@ const LogInForm = () => {
          
         <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' disabled={disableButton} onClick={onSubmit}>LOG IN</button>
     <p className='text-center mt-6'>
-        Don't have an account? <Link to='/' className='text-orange-500 underline'>Sign Up</Link>
+        Don't have an account? <Link to='/signup' className='text-orange-500 underline'>Sign Up</Link>
     </p>
     </form>
 </>
