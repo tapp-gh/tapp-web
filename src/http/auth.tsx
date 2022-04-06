@@ -1,24 +1,28 @@
 import axios from "../utility/axios";
-// import { AxiosRequestConfig } from 'axios'
+
 
 // assigning types
-export interface Details {
-    name: string,
+
+interface Details {
     email:string,
     password: string,
-    confirmPassword: string
   }
 
+interface LogIn extends Details{}
+interface SignUp extends Details{
+  name: string,
+  confirmPassword: string
+}
   // Login API call
-  export const login = async (data:Details)=>{
-    const res = await axios.post("login/", data);
+  export const login = async (data:LogIn)=>{
+    const res = await axios.post("auth/", data);
      return res;
     
     // making a post request 
   }
 
-  export const signup = async (data:Details)=>{
-    const res = await axios.post("signup/", data);
+  export const signup = async (data:SignUp)=>{
+    const res = await axios.post("users/", data);
      return res;
     
     // making a post request 
