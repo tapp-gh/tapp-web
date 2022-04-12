@@ -3,15 +3,13 @@ import axios from "../utility/axios";
 
 // assigning types
 
-interface Details {
+interface LogIn {
     email:string,
     password: string,
   }
-
-interface LogIn extends Details{}
-interface SignUp extends Details{
+interface SignUp extends LogIn{
   name: string,
-  confirmPassword: string
+  // confirmPassword: string
 }
   // Login API call
   export const login = async (data:LogIn)=>{

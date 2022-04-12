@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import { signup } from '../http/auth';
+import { AxiosError } from 'axios';
 
 
 interface formData {
@@ -24,11 +25,16 @@ const SignUpForm = () => {
   password.current = watch("password","")
 
        // submit function
-       const onSubmit = handleSubmit(async ({name,email,password,confirmPassword})=>{
-        const userDetails= await signup({
-                   name,email,password,confirmPassword
-               })
-                console.log( userDetails )
+       const onSubmit = handleSubmit(async ({name,email,password,})=>{
+        try {
+          const userDetails= await signup({
+                     name,email,password,
+                 })
+                  console.log( userDetails )
+        }catch (error){
+             const err = error as AxiosError
+             console.log(err)    
+        }
        })
        
        // Viewing Passwords Function
@@ -96,7 +102,9 @@ const SignUpForm = () => {
           <button className='text-orange-500 absolute right-6 top-24' data-testid= 'showpassword' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           <button className='text-orange-500 absolute right-6 bottom-50' data-testid= 'showConfirmPassword' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           
-        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' data-testid='signup' type='submit' disabled={disableButton} onClick={onSubmit}>SIGN UP</button>
+        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' data-testid='signup' type='submit' 
+        // disabled={disableButton}
+         onClick={onSubmit}>SIGN UP</button>
       <p className='text-center mt-6'>
         Already have an account? <Link to='/Login' className='text-orange-500 underline'>Sign In</Link>
     </p>

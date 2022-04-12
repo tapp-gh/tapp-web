@@ -3,6 +3,8 @@ import React,{useState} from 'react'
 import { useForm } from 'react-hook-form';
 import {Link} from 'react-router-dom'
 import { login } from '../http/auth';
+import { AxiosError } from "axios";
+
 
 interface loginData {
     email: string,
@@ -15,11 +17,14 @@ const LogInForm = () => {
 
     // submit function
     const onSubmit = handleSubmit(async({email,password})=>{
-        // const data = await login({
-        //     email,
-        //     password
-        // })
-        // console.log(data)
+      try{
+        const data = await login({email,password})
+        console.log(data)
+      }catch (error){
+        const err = error as AxiosError
+        console.log(err)
+      }
+      
     })
     const handleEnable = (event: React.FormEvent)=>{
       const target = event.target as HTMLButtonElement
