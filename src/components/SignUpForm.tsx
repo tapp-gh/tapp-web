@@ -20,15 +20,14 @@ const SignUpForm = () => {
   const [disableButton, setDisableButton] = useState(true) 
   const {register,handleSubmit, formState :{errors}, watch} = useForm<formData>();
 
-  //this where the error is
   const password = useRef({})
   password.current = watch("password","")
 
        // submit function
-       const onSubmit = handleSubmit(async ({name,email,password,})=>{
+       const onSubmit = handleSubmit(async ({name,email,password,confirmPassword})=>{
         try {
           const userDetails= await signup({
-                     name,email,password,
+                     name,email,password,confirmPassword
                  })
                   console.log( userDetails )
         }catch (error){

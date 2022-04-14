@@ -1,4 +1,3 @@
-import { sign } from 'crypto';
 import React,{useState} from 'react'
 import { useForm } from 'react-hook-form';
 import {Link} from 'react-router-dom'
@@ -32,7 +31,7 @@ const LogInForm = () => {
     }
     return (
         <>
-    <form className='space-y-6 mt-44 p-4 flex flex-col justify-center relative'>
+    <form className='space-y-6 mt-40 p-4 flex flex-col relative'>
        <input
        {...register("email", {
         required: true,

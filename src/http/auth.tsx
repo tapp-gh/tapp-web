@@ -9,19 +9,17 @@ interface LogIn {
   }
 interface SignUp extends LogIn{
   name: string,
-  // confirmPassword: string
+  confirmPassword: string
 }
   // Login API call
   export const login = async (data:LogIn)=>{
     const res = await axios.post("auth/", data);
      return res;
-    
-    // making a post request 
-  }
 
+  }
+  // Signup API call
   export const signup = async (data:SignUp)=>{
     const res = await axios.post("users/", data);
      return res;
-    
-    // making a post request 
+
   }
