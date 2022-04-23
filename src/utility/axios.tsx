@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "https://tapp-api-0.herokuapp.com/api/v1/",
+    baseURL: "https://2e1a-154-160-7-129.eu.ngrok.io/api/v1/",
     headers: {
       "Content-Type": "application/json",
     },
