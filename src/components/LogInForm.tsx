@@ -1,8 +1,12 @@
 import React,{useState} from 'react'
 import { useForm } from 'react-hook-form';
-import {Link} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import { login } from '../http/auth';
 import { AxiosError } from "axios";
+import { useSelector,useDispatch } from 'react-redux'
+import {setToken, setIsAuthenticated, setIsLoading, setUser} from '../store/slice/authSlice'
+import { RootState } from '../store/index'
+
 
 
 interface loginData {
@@ -13,15 +17,26 @@ const LogInForm = () => {
     
     const [disableButton,setDisableButton] = useState(true)
     const {register,handleSubmit,formState:{errors}} = useForm<loginData>()
+    const dispatch = useDispatch()
+    const isAuthenticated = useSelector((state:RootState) => state.auth.isAuthenticated)
+    
+    if(isAuthenticated){
+      return <Navigate to='/home' replace/>
+    }
 
     // submit function
     const onSubmit = handleSubmit(async({email,password})=>{
       try{
-        const data = await login({email,password})
+        const res = await login({email,password})
+        const data = res.data
+        dispatch(setToken(data.token))
+        dispatch(setUser(data.user))
+        dispatch(setIsAuthenticated(true))
+        
         console.log(data)
       }catch (error){
         const err = error as AxiosError
-        console.log(err)
+        console.log(err.response)
       }
       
     })
