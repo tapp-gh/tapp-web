@@ -1,11 +1,13 @@
 import React,{useState, useRef} from 'react'
-import { Link } from 'react-router-dom';
+import { Link,Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import { signup } from '../http/auth';
 import { AxiosError } from 'axios';
-
+import { useSelector,useDispatch } from 'react-redux'
+import {setToken, setIsAuthenticated, setIsLoading, setUser} from '../store/slice/authSlice'
+import { RootState } from '../store/index'
 
 interface formData {
   name: string,
@@ -14,25 +16,35 @@ interface formData {
   confirmPassword: string
 }
 const SignUpForm = () => {
-
+  
+  const password = useRef({})
   const [showPassword,setShowPassword] = useState(false)
   const [showConfirmPassword,setShowConfirmPassword] = useState(false)
   const [disableButton, setDisableButton] = useState(true) 
   const {register,handleSubmit, formState :{errors}, watch} = useForm<formData>();
+  const dispatch = useDispatch()
+  const isAuthenticated = useSelector((state:RootState) => state.auth.isAuthenticated)
 
-  const password = useRef({})
+
+  if(isAuthenticated){
+    return <Navigate to='/home' replace/>
+  }
   password.current = watch("password","")
 
        // submit function
        const onSubmit = handleSubmit(async ({name,email,password,confirmPassword})=>{
         try {
-          const userDetails= await signup({
+          const res = await signup({
                      name,email,password,confirmPassword
                  })
-                  console.log( userDetails )
+          const data = res.data
+          dispatch(setToken(data.token))
+          dispatch(setUser(data.user))
+          dispatch(setIsAuthenticated(true))
+                  console.log( data )
         }catch (error){
              const err = error as AxiosError
-             console.log(err)    
+             console.log(err.response)
         }
        })
        
