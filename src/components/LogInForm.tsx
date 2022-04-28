@@ -1,8 +1,13 @@
-import { sign } from 'crypto';
 import React,{useState} from 'react'
 import { useForm } from 'react-hook-form';
-import {Link} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import { login } from '../http/auth';
+import { AxiosError } from "axios";
+import { useSelector,useDispatch } from 'react-redux'
+import {setToken, setIsAuthenticated, setIsLoading, setUser} from '../store/slice/authSlice'
+import { RootState } from '../store/index'
+
+
 
 interface loginData {
     email: string,
@@ -12,14 +17,28 @@ const LogInForm = () => {
     
     const [disableButton,setDisableButton] = useState(true)
     const {register,handleSubmit,formState:{errors}} = useForm<loginData>()
+    const dispatch = useDispatch()
+    const isAuthenticated = useSelector((state:RootState) => state.auth.isAuthenticated)
+    
+    if(isAuthenticated){
+      return <Navigate to='/home' replace/>
+    }
 
     // submit function
     const onSubmit = handleSubmit(async({email,password})=>{
-        // const data = await login({
-        //     email,
-        //     password
-        // })
-        // console.log(data)
+      try{
+        const res = await login({email,password})
+        const data = res.data
+        dispatch(setToken(data.token))
+        dispatch(setUser(data.user))
+        dispatch(setIsAuthenticated(true))
+        
+        console.log(data)
+      }catch (error){
+        const err = error as AxiosError
+        console.log(err.response)
+      }
+      
     })
     const handleEnable = (event: React.FormEvent)=>{
       const target = event.target as HTMLButtonElement
@@ -27,7 +46,7 @@ const LogInForm = () => {
     }
     return (
         <>
-    <form className='space-y-6 mt-44 p-4 flex flex-col justify-center relative'>
+    <form className='space-y-6 mt-40 p-4 flex flex-col relative'>
        <input
        {...register("email", {
         required: true,

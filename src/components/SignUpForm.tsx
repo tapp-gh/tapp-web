@@ -1,10 +1,13 @@
 import React,{useState, useRef} from 'react'
-import { Link } from 'react-router-dom';
+import { Link,Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import { signup } from '../http/auth';
-
+import { AxiosError } from 'axios';
+import { useSelector,useDispatch } from 'react-redux'
+import {setToken, setIsAuthenticated, setIsLoading, setUser} from '../store/slice/authSlice'
+import { RootState } from '../store/index'
 
 interface formData {
   name: string,
@@ -13,22 +16,36 @@ interface formData {
   confirmPassword: string
 }
 const SignUpForm = () => {
-
+  
+  const password = useRef({})
   const [showPassword,setShowPassword] = useState(false)
   const [showConfirmPassword,setShowConfirmPassword] = useState(false)
   const [disableButton, setDisableButton] = useState(true) 
   const {register,handleSubmit, formState :{errors}, watch} = useForm<formData>();
+  const dispatch = useDispatch()
+  const isAuthenticated = useSelector((state:RootState) => state.auth.isAuthenticated)
 
-  //this where the error is
-  const password = useRef({})
+
+  if(isAuthenticated){
+    return <Navigate to='/home' replace/>
+  }
   password.current = watch("password","")
 
        // submit function
        const onSubmit = handleSubmit(async ({name,email,password,confirmPassword})=>{
-        const userDetails= await signup({
-                   name,email,password,confirmPassword
-               })
-                console.log( userDetails )
+        try {
+          const res = await signup({
+                     name,email,password,confirmPassword
+                 })
+          const data = res.data
+          dispatch(setToken(data.token))
+          dispatch(setUser(data.user))
+          dispatch(setIsAuthenticated(true))
+                  console.log( data )
+        }catch (error){
+             const err = error as AxiosError
+             console.log(err.response)
+        }
        })
        
        // Viewing Passwords Function
@@ -96,7 +113,9 @@ const SignUpForm = () => {
           <button className='text-orange-500 absolute right-6 top-24' data-testid= 'showpassword' onClick={togglePassword}>{ showPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           <button className='text-orange-500 absolute right-6 bottom-50' data-testid= 'showConfirmPassword' onClick={toggleConfirmPassword}>{ showConfirmPassword ? <AiFillEye/>:<AiFillEyeInvisible/>}</button>
           
-        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' data-testid='signup' type='submit' disabled={disableButton} onClick={onSubmit}>SIGN UP</button>
+        <button className='bg-black border from-neutral-50 max-auto p-2 rounded-full text-white' data-testid='signup' type='submit' 
+        // disabled={disableButton}
+         onClick={onSubmit}>SIGN UP</button>
       <p className='text-center mt-6'>
         Already have an account? <Link to='/Login' className='text-orange-500 underline'>Sign In</Link>
     </p>
